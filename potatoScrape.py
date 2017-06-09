@@ -10,7 +10,7 @@ def get_soup(url,header):
     return BeautifulSoup(urllib2.urlopen(urllib2.Request(url,headers=header)),"html.parser")
 
 
-query = raw_input("potato")# you can change the query for the image  here
+query = raw_input("potatoe")# you can change the query for the image  here
 image_type="Country"
 query= query.split()
 query='+'.join(query)

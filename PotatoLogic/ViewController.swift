@@ -11,10 +11,11 @@ import AVFoundation
 import Foundation
 
 class ViewController: UIViewController {
-    
-    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var imgOverlay: UIImageView!
     @IBOutlet weak var btnCapture: UIButton!
+    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var captionLabel: UILabel!
+    
     let model = Inceptionv3()
     let captureSession = AVCaptureSession()
     let stillImageOutput = AVCaptureStillImageOutput()
@@ -53,9 +54,9 @@ class ViewController: UIViewController {
         //saveToCamera()
     }
     func scanPotato() -> Bool {
-       // guard let picOut = try? model.prediction(input: Inceptionv3Input(image: self.img.image!.ciImage)) else {
-            //fatalError("Unexpected runtime error.")
-        //}
+        guard let picOut = try? model.prediction(input: Inceptionv3Input(image: self.img.image!.ciImage)) else {
+            fatalError("Unexpected runtime error.")
+        }
         return true
     }
     func beginSession() {
@@ -82,7 +83,6 @@ class ViewController: UIViewController {
         previewLayer.frame = self.view.layer.frame
         captureSession.startRunning()
         
-        self.view.addSubview(navigationBar)
         self.view.addSubview(imgOverlay)
         self.view.addSubview(btnCapture)
     }
@@ -101,11 +101,6 @@ class ViewController: UIViewController {
                 }
             })
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
